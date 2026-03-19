@@ -5,17 +5,11 @@ services:
     region: frankfurt
     plan: free
     branch: main
-    buildCommand: |
-      apt-get update
-      apt-get install -y libjpeg-dev zlib1g-dev libfreetype6-dev liblcms2-dev libopenjp2-7 libtiff5-dev
-      pip install --upgrade pip
-      pip install --no-cache-dir -r requirements.txt
+    buildCommand: pip install -r requirements.txt
     startCommand: gunicorn main:app
     envVars:
       - key: PYTHON_VERSION
-        value: 3.9.18
-      - key: PYTHONUNBUFFERED
-        value: true
+        value: 3.11.0
       - key: SECRET_KEY
         generateValue: true
       - key: DATABASE_URL
