@@ -2,11 +2,15 @@ services:
   - type: web
     name: belge-donusturucu
     runtime: python
+    region: frankfurt
+    plan: free
+    branch: main
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn main:app
     envVars:
       - key: PYTHON_VERSION
-        value: 3.11.9
-      - key: gizli-anahtar-2026
+        value: 3.11.0
+      - key: SECRET_KEY
         generateValue: true
-    plan: free
+      - key: DATABASE_URL
+        sync: false
